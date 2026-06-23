@@ -40,7 +40,11 @@ node_modules/
 *.log                  # ignore all .log files
 
 **If you already committed a file before adding it to .gitignore**
-git rm --cached <filename>     # untracks it without deleting
+
+```sh
+git rm --cached <filename>    # untracks it without deleting
+```
+
 then add file path in .gitginore.
 then commit and push .gitignore file to remote.
 
@@ -48,44 +52,77 @@ then commit and push .gitignore file to remote.
 ## Commands
 
 **Create a repo**
-git init - Initializes a repo
+
+Initializes a repo
+
+```sh
+git init
+``` 
+
 
 **Add files from Working Directory to staging**
-git add .               # adds all files
-git add <filename>      # adds a specific file
+adds all files
+
+```sh
+git add .
+```
+adds a specific file
+```sh
+git add <filename>
+```
 
 **Commit changes from staging to Local Repo**
+
+```sh
 git commit -m "Initial Setup"
+```
 
 ---
 
 ## Remote Repos
 
 **Add a remote repo**
+
 Using HTTPS:
+
+```sh
 git remote add origin https://github.com/username/git-demo-flask.git
+```
 
 Using SSH:
+
+```sh
 git remote add origin git@github.com:username/git-demo-flask.git
+```
 
 origin is just a conventional name
 
 **Verify or list remotes**
+```sh
 git remote -v
+```
 
 **Push code to remote**
+```sh
 git push -u origin main
+```
 # -u saves the upstream selection (origin), so future pushes just need:
+```sh
 git push
+```
 # Note: local and remote branch names must match, else git push will error
 
 **Pull code from remote**
+```sh
 git pull              # pulls all branches and changes
+```
+```sh
 git pull origin main  # pulls only a specific branch
-
+```
 **Clone an existing remote repo**
+```sh
 git clone <repo-url>
-
+```
 ---
 
 ## Branches
@@ -95,65 +132,87 @@ new branch to work in. This avoids conflicts when two users modify the same
 code on main.
 
 **Create and switch to a new branch**
+```sh
 git checkout -b "feature/new-feature-branch"
-
+```
 **Switch to a different branch**
+```sh
 git checkout <branch-name>
-
+```
 **Rename current branch to main**
+```
 git branch -M main
+```
 # GitHub uses 'main' by default; Git uses 'master'
 
 **Merge a branch into current branch (usually main)**
+```sh
 git merge <merging-branch-name>
-
+```
 **Resolve conflicts**
 If two branches modify the same file, a merge conflict occurs.
 Fix the conflicting code manually, then stage the resolved file:
+```sh
 git add <conflict-code-file>
+```
 # Then commit to complete the merge
 
 ---
 
 ## Changing Remote URL
-
+```sh
 git remote remove origin
 git remote add origin NEW_URL
-
+```
 ## Status of Git repo
+```sh
 git status 
+```
 shows what current changes made what is current branch.
 
 ## Diff to check changes
-git diff                    # unstaged changes vs last commit
-git diff --staged           # staged changes vs last commit
-git diff <branch1> <branch2>  # compare two branches
-git diff <file>             # diff for one specific file
-
+```sh
+git diff                        # unstaged changes vs last commit
+git diff --staged               # staged changes vs last commit
+git diff <branch1> <branch2>    # compare two branches
+git diff <file>                 # diff for one specific file
+```
 ## git difftool — Visual Diff in External Editor
 
 Instead of reading diffs in terminal, open them in a visual editor.
 
 **One-time setup — tell Git which editor to use**
+```sh
 git config --global diff.tool vscode
+```
+```sh
 git config --global diff.tool notepadpp
-
+```
 **For VSCode, also add this**
+```
 git config --global difftool.vscode.cmd 'code --wait --diff $LOCAL $REMOTE'
-
+```
 **For Notepad++**
+```
 git config --global difftool.notepadpp.cmd '"C:/Program Files/Notepad++/notepad++.exe" -multiInst -nosession "$LOCAL" "$REMOTE"'
-
+```
 **Using it**
+```sh
 git difftool                        # opens each changed file one by one
+```
+```sh
 git difftool <branch1> <branch2>    # compare two branches visually
+```
+```sh
 git difftool --no-prompt            # skips "open this file? y/n" for each file
-
+```
 **Check your current difftool setting**
+```sh
 git config --global diff.tool
-
+```
 
 ## Temporarily store changes before switching to branch.
+```sh
 git stash                        # stash all uncommitted changes
 git stash push -m "label"        # stash with a name so you remember it
 git stash push <filename>        # stash one specific file
@@ -161,17 +220,19 @@ git stash list                   # see all stashes
 git stash pop                    # bring back latest stash + delete it
 git stash apply stash@{0}        # bring back specific stash, keep it in list
 git stash drop stash@{0}         # delete a specific stash
-
+```
 
 ---
 
 
 ## stardard habit for development
-git pull  | get remote latest changes
-git checkout -b  | make new branch
-git add .
-git commit -m
-git push
 
+```sh
+git pull            # get remote latest changes
+git checkout -b     # make new branch
+git add .           # stage files
+git commit -m       # push to local repo
+git push            # push to remote repo
+```
 last line if you are part of team and not head person of project. head person of project will review it and then merge it to main branch.
 then cycle repeates.
