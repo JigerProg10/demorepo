@@ -41,6 +41,8 @@ node_modules/
 
 **If you already committed a file before adding it to .gitignore**
 git rm --cached <filename>     # untracks it without deleting
+then add file path in .gitginore.
+then commit and push .gitignore file to remote.
 
 
 ## Commands
